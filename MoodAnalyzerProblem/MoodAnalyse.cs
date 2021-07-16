@@ -10,7 +10,10 @@ namespace MoodAnalyzerProblem
     {
         string message;
         //Default Constructor.......
-        public MoodAnalyse() { }
+        public MoodAnalyse() 
+        {
+            this.message = "";
+        }
         //Parameterized Constructor.........
         public MoodAnalyse(string message)
         {
@@ -36,10 +39,6 @@ namespace MoodAnalyzerProblem
             catch (NullReferenceException ex)
             {
                 throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Mood should not be null");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
             }
         }
     }
