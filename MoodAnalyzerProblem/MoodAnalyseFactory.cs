@@ -13,11 +13,11 @@ namespace MoodAnalyzerProblem
     /// </summary>
     public class MoodAnalyseFactory
     {
-       public static object CreateMoodAnalyseUsingDefault(string className,string constructorName)
+        public static object CreateMoodAnalyseUsingDefault(string className, string constructorName)
         {
             string pattern = @"." + constructorName + "$";
             Match result = Regex.Match(className, pattern);
-            if(result.Success)
+            if (result.Success)
             {
                 try
                 {
@@ -25,7 +25,7 @@ namespace MoodAnalyzerProblem
                     Type moodAnalyseType = executing.GetType(className);
                     return Activator.CreateInstance(moodAnalyseType);
                 }
-                catch(ArgumentNullException)
+                catch (ArgumentNullException)
                 {
                     throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
                 }
@@ -33,6 +33,27 @@ namespace MoodAnalyzerProblem
             else
             {
                 throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor not found");
+            }
+        }
+        public static object CreateMoodAnalyseUsingParameter(string className,string constructorName,string message)
+        {
+            Type type = typeof(MoodAnalyse);
+            if(type.Name.Equals(className)||type.FullName.Equals(className))
+            {
+                if(type.Name.Equals(constructorName))
+                {
+                    ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) });
+                    object instance = constructorInfo.Invoke(new object[] { message });
+                    return instance;
+                }
+                else
+                {
+                    throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor not found");
+                }
+            }
+            else
+            {
+                throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
             }
         }
     }
