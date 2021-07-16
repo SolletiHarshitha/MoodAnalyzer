@@ -13,6 +13,7 @@ namespace MoodAnalyzerProblem
     /// </summary>
     public class MoodAnalyseFactory
     {
+        //For Default Constructor........
         public static object CreateMoodAnalyseUsingDefault(string className, string constructorName)
         {
             string pattern = @"." + constructorName + "$";
@@ -35,6 +36,7 @@ namespace MoodAnalyzerProblem
                 throw new CustomMoodAnalyserException(CustomMoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor not found");
             }
         }
+        //For Parameterized Constructor............
         public static object CreateMoodAnalyseUsingParameter(string className,string constructorName,string message)
         {
             Type type = typeof(MoodAnalyse);
