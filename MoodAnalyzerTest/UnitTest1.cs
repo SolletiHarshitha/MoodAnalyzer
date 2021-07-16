@@ -181,11 +181,14 @@ namespace MoodAnalyzerTest
             string expected = "Method not found";
             try
             {
+                //Arrange
                 string methodName = "AnalyzeMod";
+                //Act
                 object resultObj = MoodAnalyseFactory.InvokeAnalyseMethod("Happy", methodName);
             }
             catch(CustomMoodAnalyserException ex)
             {
+                //Assert
                 Assert.AreEqual(expected, ex.Message);
             }
         }
