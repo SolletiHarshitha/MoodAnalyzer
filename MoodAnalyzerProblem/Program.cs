@@ -13,7 +13,7 @@ namespace MoodAnalyzerProblem
                 string result = moodAnalyse.AnalyseMood();
                 Console.WriteLine(result);
             }
-            catch(CustomMoodAnalyserException ex)
+            catch (CustomMoodAnalyserException ex)
             {
                 Console.WriteLine(ex.Message);
             }
