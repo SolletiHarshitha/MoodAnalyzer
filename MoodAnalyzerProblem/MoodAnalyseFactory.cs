@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProblem
 {
+    /// <summary>
+    /// CreateMoodAnalyse method to create object of MoodAnalyse calss
+    /// </summary>
     public class MoodAnalyseFactory
     {
        public static object CreateMoodAnalyseUsingDefault(string className,string constructorName)
